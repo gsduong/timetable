@@ -2,20 +2,20 @@ import { Component } from "@angular/core";
 import { AuthenticationService } from "../authentication/authentication.service";
 
 @Component({
-  selector: 'login',
+  selector: 'home',
   providers: [
     AuthenticationService
   ],
-  template: `
-            <div class="container" >
-                <div class="content">
-                    <span>Congratulations, you have successfully logged in!!</span>
-                    <br />
-                    <p>This is page for time table application</p>
-                    <a (click)="logout()" href="#">Click Here to logout</a>
-                </div>
-            </div>
-  `
+  templateUrl: 'app/home/home.component.html',
+  styles: [`
+    left-panel {
+      border: solid 1px;
+      height: 780px;
+    }
+    right-panel {
+      height: 780px;
+    }
+  `]
 })
 
 export class HomeComponent {
