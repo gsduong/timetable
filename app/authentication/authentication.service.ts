@@ -24,7 +24,7 @@ export class AuthenticationService {
     this._router.navigate(['login']);
   }
   login(user: User){
-    var authUser = users.find(usr => usr.username === usr.username);
+    var authUser = users.find(usr => usr.username === user.username);
     if (authUser && authUser.password === user.password) {
       localStorage.setItem("user", authUser.username);
       this._router.navigate(['home']);
