@@ -9,10 +9,6 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ListService {
-  title: string; // "Category" or "Subject"
-  items: Array<any>;
-  selectedItem: any;
-  status: number; // 1 for Category, 0 for Subjects (in category)
 
   getCategories(): Promise<Category[]> {
     return Promise.resolve(CATEGORYLIST);
@@ -33,28 +29,5 @@ export class ListService {
   getSubject(id: number): Promise<Subject> {
     return this.getSubjects()
       .then(subjects => subjects.find(subject => subject.getId() === id));
-  }
-
-  init(): void {
-    this.getCategories().then(categories => this.items = categories);
-    this.title = "Category";
-    this.status = 1;
-  }
-
-  onCategorySelect(category: Category): void {
-    this.selectedItem = category;
-    this.getSubjectsByCategoryId(category.getId()).then(subjects => this.items = subjects);
-    this.title = "Subject";
-    this.status = 0;
-  }
-
-  onBackSelect(): void {
-    this.init();
-    this.title = "Category";
-    this.status = 1;
-  }
-
-  isListOfCategories(): boolean {
-    return this.status == 1;
   }
 }

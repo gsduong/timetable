@@ -22,5 +22,9 @@ export const CATEGORYLIST = [
   new Category(5, "A"),
   new Category(6, "B"),
   new Category(7, "C"),
-  new Category(8, "D")
+  new Category(8, "D"),
+  new Category(9, "E"),
+  new Category(10, "F"),
+  new Category(11, "G"),
+  new Category(12, "H"),
 ]

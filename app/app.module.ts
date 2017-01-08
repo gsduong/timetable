@@ -9,12 +9,14 @@ import { AppRoutingModule }     from './routing/app-routing.module';
 import { AuthenticationService } from './authentication/authentication.service';
 import {LeftPanelComponent} from "./left-panel/left-panel.component";
 import {RightPanelComponent} from "./right-panel/right-panel.component";
+import {ListService} from "./left-panel/list.service";
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule ],
   declarations: [ AppComponent, LoginComponent, HomeComponent, LeftPanelComponent, RightPanelComponent],
   providers:    [
-    AuthenticationService
+    AuthenticationService,
+    ListService
   ],
   bootstrap:    [ AppComponent ]
 })
