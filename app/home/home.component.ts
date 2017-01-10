@@ -9,7 +9,6 @@ import { AuthenticationService } from "../authentication/authentication.service"
   templateUrl: 'app/home/home.component.html',
   styles: [`
     left-panel {
-      border: solid 1px;
       height: 780px;
     }
     right-panel {

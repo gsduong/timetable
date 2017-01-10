@@ -4,9 +4,6 @@ ul {
   overflow-y: auto;
   height: 580px;
 }
-h1 {
-  border: solid 1px;
-}
 .selected {
   background-color: #CFD8DC !important;
   color: white;

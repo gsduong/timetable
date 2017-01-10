@@ -30,4 +30,9 @@ export class ListService {
     return this.getSubjects()
       .then(subjects => subjects.find(subject => subject.getId() === id));
   }
+  onQueryUpdate(query: string): Promise<Subject[]> {
+    if (query !== "") return this.getSubjects()
+      .then(subjects => subjects.filter(subject => subject.getName().toLowerCase().indexOf(query.toLowerCase()) !== -1));
+    else return this.getSubjects();
+  }
 }

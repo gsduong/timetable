@@ -2,23 +2,17 @@ import {Component, OnInit} from "@angular/core";
 import any = jasmine.any;
 import {ListService} from "./list.service";
 import {Category} from "../category";
+import {Subject} from "../subject";
 
 @Component({
   selector: 'left-panel',
-  template: `
-    <span><button type="button" class="btn btn-default btn-xs" *ngIf="status === 2" (click)="onBack()">Back</button><h1 style="text-align: center;">{{title}}</h1></span>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of items" (click)="onSelect(item)" [class.selected]="item === selectedItem">
-        <h4 class="list-group-item-heading">{{item.getName()}}</h4>
-        <p class="list-group-item-text">{{item.getName()}}</p>
-      </li>
-    </ul>
-  `,
+  templateUrl: 'app/left-panel/left-panel.component.html',
   styleUrls: ['app/left-panel/left-panel.component.css']
 })
 
 export class LeftPanelComponent implements OnInit {
   title = '';
+  query = '';
   items : Array<any>;
   selectedItem : any;
   status : number;
@@ -31,6 +25,9 @@ export class LeftPanelComponent implements OnInit {
     this.listService.getSubjectsByCategoryId(category_id).then(subjects => this.items = subjects);
     this.status = 2;
     this.title = "Subject";
+  }
+  getSubjects(): void {
+    this.listService.getSubjects().then(subjects => this.items = subjects);
   }
   ngOnInit(): void {
     this.getCategories();
@@ -50,5 +47,20 @@ export class LeftPanelComponent implements OnInit {
     this.getCategories();
     this.title = "Category";
     this.status = 1;
+  }
+  onSubjectsSelect(): void {
+    this.getSubjects();
+    this.title = "Subject";
+    this.status = 2;
+  }
+  onSearchSelect(): void {
+    this.status = 3;
+    this.getSubjects();
+  }
+  onKey(event:any) {
+    this.query = event.target.value;
+    this.listService.onQueryUpdate(this.query)
+      .then(subjects => this.items = subjects);
+    console.log(this.items);
   }
 }

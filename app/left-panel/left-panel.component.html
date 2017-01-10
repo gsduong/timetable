@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row" *ngIf="status === 2">
+        <div class="col-md-3">
+          <button type="button" class="btn btn-default btn-md" *ngIf="status === 2" (click)="onBack()">Back</button>
+        </div>
+        <div class="col-md-9">
+          <h1>{{title}}</h1>
+        </div>
+
+      </div>
+      <div class="row" *ngIf="status === 1">
+        <h1 class="text-center">{{title}}</h1>
+      </div>
+      <div class="center-block" *ngIf="status === 3">
+        <form class="form-inline">
+          <input (keyup)="onKey($event)">
+        </form>
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of items" (click)="onSelect(item)" [class.selected]="item === selectedItem">
+          <h4 class="list-group-item-heading">{{item.getName()}}</h4>
+          <p class="list-group-item-text">{{item.getName()}}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-4 col-xs-4"><button type="button" class="btn btn-default" (click)="onSubjectsSelect()">Subjects</button></div>
+        <div class="col-md-4 col-xs-4"><button type="button" class="btn btn-default" (click)="onSearchSelect()">Search</button></div>
+        <div class="col-md-4 col-xs-4"><button type="button" class="btn btn-default">Settings</button></div>
+      </div>
+    </div>
+  </div>
+</div>
