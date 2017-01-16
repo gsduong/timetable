@@ -8,20 +8,21 @@
         <div class="col-md-9">
           <h1>{{title}}</h1>
         </div>
-
       </div>
       <div class="row" *ngIf="status === 1">
         <h1 class="text-center">{{title}}</h1>
       </div>
       <div class="center-block" *ngIf="status === 3">
         <form class="form-inline">
-          <input (keyup)="onKey($event)">
+          <input (keyup)="onKey($event)" title="">
         </form>
       </div>
     </div>
     <div class="panel-body">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let item of items" (click)="onSelect(item)" [class.selected]="item === selectedItem">
+        <li class="list-group-item" *ngFor="let item of items"
+            (click)="onSelect(item)" [class.selected]="item === selectedItem"
+            draggable="{{ draggable }}" ondragstart="drag(event)">
           <h4 class="list-group-item-heading">{{item.getName()}}</h4>
           <p class="list-group-item-text">{{item.getName()}}</p>
         </li>

@@ -3,6 +3,7 @@ import any = jasmine.any;
 import {ListService} from "./list.service";
 import {Category} from "../category";
 import {Subject} from "../subject";
+import { MakeDraggable } from "./draggable.directive";
 
 @Component({
   selector: 'left-panel',
@@ -16,15 +17,18 @@ export class LeftPanelComponent implements OnInit {
   items : Array<any>;
   selectedItem : any;
   status : number;
+  draggable: boolean;
   constructor(private listService: ListService){ }
 
   getCategories(): void {
     this.listService.getCategories().then(categories => this.items = categories);
+    this.draggable = false;
   }
   getSubjectsByCategoryId(category_id: number): void {
     this.listService.getSubjectsByCategoryId(category_id).then(subjects => this.items = subjects);
     this.status = 2;
     this.title = "Subject";
+    this.draggable = true;
   }
   getSubjects(): void {
     this.listService.getSubjects().then(subjects => this.items = subjects);
@@ -33,6 +37,7 @@ export class LeftPanelComponent implements OnInit {
     this.getCategories();
     this.title = "Category";
     this.status = 1;
+    this.draggable = false;
   }
 
   onSelect(item: any): void {
