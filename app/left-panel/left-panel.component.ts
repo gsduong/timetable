@@ -3,6 +3,7 @@ import any = jasmine.any;
 import {ListService} from "./list.service";
 import {Category} from "../category";
 import {Subject} from "../subject";
+import { AuthenticationService } from "../authentication/authentication.service";
 
 @Component({
   selector: 'left-panel',
@@ -16,7 +17,7 @@ export class LeftPanelComponent implements OnInit {
   items : Array<any>;
   selectedItem : any;
   status : number;
-  constructor(private listService: ListService){ }
+  constructor(private listService: ListService, private authService: AuthenticationService ){ }
 
   getCategories(): void {
     this.listService.getCategories().then(categories => this.items = categories);
@@ -62,5 +63,8 @@ export class LeftPanelComponent implements OnInit {
     this.listService.onQueryUpdate(this.query)
       .then(subjects => this.items = subjects);
     console.log(this.items);
+  }
+  onLogoutSelect(){
+    this.authService.logout();
   }
 }
