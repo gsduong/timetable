@@ -2,6 +2,7 @@
  * Created by gsduong on 1/4/17.
  */
 import { Component } from "@angular/core";
+import { MakeDroppable } from "./droppable.directive";
 
 @Component({
   selector: 'right-panel',

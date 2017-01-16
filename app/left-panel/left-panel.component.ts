@@ -3,7 +3,11 @@ import any = jasmine.any;
 import {ListService} from "./list.service";
 import {Category} from "../category";
 import {Subject} from "../subject";
+
 import { AuthenticationService } from "../authentication/authentication.service";
+
+import { MakeDraggable } from "./draggable.directive";
+
 
 @Component({
   selector: 'left-panel',
@@ -17,6 +21,7 @@ export class LeftPanelComponent implements OnInit {
   items : Array<any>;
   selectedItem : any;
   status : number;
+
   constructor(private listService: ListService, private authService: AuthenticationService ){ }
 
   getCategories(): void {
