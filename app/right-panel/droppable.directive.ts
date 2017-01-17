@@ -16,6 +16,7 @@ export class MakeDroppable implements OnInit {
             if ( e.target.className == "dropzone" ) {
                 e.target.style.background = "gray";
                 console.log("dragenter");
+                console.log("hello");
             }
         });
 
@@ -31,7 +32,7 @@ export class MakeDroppable implements OnInit {
             if (e.preventDefault) {
                 e.preventDefault();
             }
-
+            console.log("dragover")
             e.dataTransfer.dropEffect = 'copy';
             return false;
         });
@@ -40,10 +41,15 @@ export class MakeDroppable implements OnInit {
         // and fire off an event passing the data
         el.addEventListener('drop', (e:any) => {
             e.preventDefault();
+            console.log("abbbbbbb");
+            console.log(e.target);
             if ( e.target.className == "dropzone" ) {
                 e.target.style.background = "";
+                console.log(1);
                 let nodeCopy = dragged.cloneNode(true);
+                console.log(2);
                 nodeCopy.attributes.draggable = false;
+                console.log(3);
                 console.log(nodeCopy.attributes.draggable);
                 e.target.appendChild( nodeCopy );
                 console.log("drop");

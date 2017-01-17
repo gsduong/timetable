@@ -22,7 +22,7 @@
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of items"
             (click)="onSelect(item)" [class.selected]="item === selectedItem"
-            [draggable]="status != 1" ondragstart="drag(event)">
+            [draggable]="status != 1" ondragstart="drag(event)" makeDraggable>
           <h4 class="list-group-item-heading">{{item.getName()}}</h4>
           <p class="list-group-item-text">{{item.getName()}}</p>
         </li>

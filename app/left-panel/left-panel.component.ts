@@ -6,9 +6,6 @@ import {Subject} from "../subject";
 
 import { AuthenticationService } from "../authentication/authentication.service";
 
-import { MakeDraggable } from "./draggable.directive";
-
-
 @Component({
   selector: 'left-panel',
   templateUrl: 'app/left-panel/left-panel.component.html',

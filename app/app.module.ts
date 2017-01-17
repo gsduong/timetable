@@ -10,14 +10,17 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { LeftPanelComponent } from "./left-panel/left-panel.component";
 import { RightPanelComponent } from "./right-panel/right-panel.component";
 import { ListService } from "./left-panel/list.service";
-//import { MakeDraggable } from "./left-panel/draggable.directive";
-//import { MakeDroppable } from "./right-panel/droppable.directive";
+import { MakeDraggable } from "./left-panel/draggable.directive";
+import { MakeDroppable } from "./right-panel/droppable.directive";
+import { DndModule } from "ng2-dnd";
 
 @NgModule({
   imports:  [
       BrowserModule,
       FormsModule,
-      AppRoutingModule
+      AppRoutingModule,
+      DndModule.forRoot()
+
   ],
   declarations: [
       AppComponent,
@@ -25,8 +28,8 @@ import { ListService } from "./left-panel/list.service";
       HomeComponent,
       LeftPanelComponent,
       RightPanelComponent,
-      // MakeDraggable,
-      // MakeDroppable
+      MakeDraggable,
+      MakeDroppable
   ],
   providers:    [
     AuthenticationService,
