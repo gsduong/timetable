@@ -10,6 +10,9 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { LeftPanelComponent } from "./left-panel/left-panel.component";
 import { RightPanelComponent } from "./right-panel/right-panel.component";
 import { ListService } from "./left-panel/list.service";
+import {Draggable} from "./shared/make-draggable.directive";
+import {Droppable} from "./shared/make-droppable.directive";
+import {TimeTableService} from "./right-panel/timetable.service";
 //import { MakeDraggable } from "./left-panel/draggable.directive";
 //import { MakeDroppable } from "./right-panel/droppable.directive";
 
@@ -27,10 +30,13 @@ import { ListService } from "./left-panel/list.service";
       RightPanelComponent,
       // MakeDraggable,
       // MakeDroppable
+      Draggable,
+      Droppable
   ],
   providers:    [
     AuthenticationService,
-    ListService
+    ListService,
+    TimeTableService
   ],
   bootstrap:    [ AppComponent ]
 })
