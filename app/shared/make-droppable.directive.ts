@@ -1,4 +1,5 @@
 import {Directive, OnInit, Output, EventEmitter, ElementRef} from "@angular/core";
+import {TimeTableItem} from "../TimeTableItem";
 /**
  * Created by gsduong on 1/20/17.
  */
@@ -8,7 +9,6 @@ import {Directive, OnInit, Output, EventEmitter, ElementRef} from "@angular/core
 export class Droppable implements OnInit {
 
   @Output() dropped: EventEmitter<any> = new EventEmitter();
-
   constructor(private elementRef: ElementRef){
 
   }
@@ -50,10 +50,21 @@ export class Droppable implements OnInit {
       }
 
       el.classList.remove('over');
-      let dataString = e.dataTransfer.getData('text');
-      let data = JSON.parse(dataString);
-      el.innerHTML = dataString;
-      this.dropped.emit(data);
+      let subjectString = e.dataTransfer.getData('text');
+      let subject = JSON.parse(subjectString); /* subject to be dropped */
+
+      let targetElement = e.target;
+      let targetId = targetElement.getAttributeNode('id');
+
+      if (!el.children.length) { /* check if there is already a subject dropped */
+
+        let targetElement = e.target;
+        let targetId = targetElement.getAttributeNode('id').value;
+        let item = new TimeTableItem();
+        item.setSubject(subject);
+        item.setTimeTableId(targetId);
+        this.dropped.emit(item);
+      }
       return false;
     })
   }

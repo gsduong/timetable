@@ -8,3 +8,5 @@ export const DAY_IN_WEEK = [
 export const ROWS = [1, 2, 3, 4, 5, 6, 7];
 
 export const COLS = [1, 2, 3, 4, 5, 6];
+
+export const SIZE = ROWS.length * COLS.length;

@@ -21,10 +21,8 @@
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of items"
-            (click)="onSelect(item)" [class.selected]="item === selectedItem"
-            [makeDraggable]="item" [isDraggable]="status != 1">
-          <h4 class="list-group-item-heading">{{item.getName()}}</h4>
-          <p class="list-group-item-text">{{item.getName()}}</p>
+            (click)="onSelect(item)" [class.selected]="item === selectedItem" [makeDraggable]="item" [isDraggable]="item.isDraggable">
+          <subject [subject]="item" [id]="item.getId() + item.getName()"></subject>
         </li>
       </ul>
     </div>

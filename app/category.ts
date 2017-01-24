@@ -2,9 +2,11 @@ import {variable} from "@angular/compiler/src/output/output_ast";
 export class Category {
   name: string;
   id: number;
+  isDraggable: boolean;
   constructor(_id: number, _name: string){
     this.id = _id;
     this.name = _name;
+    this.isDraggable = false;
   }
   public getId(): number {
     return this.id;

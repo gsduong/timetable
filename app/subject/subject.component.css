@@ -1,0 +1,8 @@
+subject {
+  height: 100%;
+  width: 100%;
+}
+.drag-enter {
+  border: solid 1px;
+  color: #ffffff;
+}

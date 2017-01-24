@@ -1,18 +1,20 @@
-<table width="80%" align="center" >
+<table width="80%" align="center">
     <thead>
       <tr>
         <th>Time</th>
         <th>Monday</th>
         <th>Tuesday</th>
         <th>Wednesday</th>
-        <th>Thrusday</th>
+        <th>Thursday</th>
         <th>Friday</th>
       </tr>
     </thead>
   <tbody>
     <tr *ngFor="let row of rows">
       <td>{{row}}</td>
-      <td *ngFor="let day of days" [id]="day + '-' + row" makeDroppable (dropped)="onDrop($event)"></td>
+      <td *ngFor="let day of days" [id]="day + row" makeDroppable (dropped)="onDrop($event)">
+        <subject *ngIf="!isEmpty(day + row)" [subject]="getSubjectByTimeTableId(day + row)"></subject>
+      </td>
     </tr>
   </tbody>
 

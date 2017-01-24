@@ -13,6 +13,7 @@ import { ListService } from "./left-panel/list.service";
 import {Draggable} from "./shared/make-draggable.directive";
 import {Droppable} from "./shared/make-droppable.directive";
 import {TimeTableService} from "./right-panel/timetable.service";
+import {SubjectComponent} from "./subject/subject.component";
 //import { MakeDraggable } from "./left-panel/draggable.directive";
 //import { MakeDroppable } from "./right-panel/droppable.directive";
 
@@ -31,7 +32,8 @@ import {TimeTableService} from "./right-panel/timetable.service";
       // MakeDraggable,
       // MakeDroppable
       Draggable,
-      Droppable
+      Droppable,
+      SubjectComponent
   ],
   providers:    [
     AuthenticationService,

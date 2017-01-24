@@ -1,20 +1,14 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "../subject";
+import {SIZE} from "./timetable.utils";
+import {TimeTableItem} from "../TimeTableItem";
 /**
  * Created by gsduong on 1/20/17.
  */
 
-export class TimeTable {
-  mon: Subject[];
-  tue: Subject[];
-  wed: Subject[];
-  thu: Subject[];
-  fri: Subject[];
-}
-
 @Injectable()
 export class TimeTableService {
-  getUsername(): string {
+  getUsername(): string { /* get current username */
     return localStorage.getItem('user');
   }
 
@@ -22,9 +16,24 @@ export class TimeTableService {
     return localStorage.getItem(this.getUsername());
   }
 
-  getSubjects(): TimeTable {
+  getItems(): Promise<TimeTableItem[]> {
     let JSON_string = this.getDataString();
-    if (JSON_string == null) return new TimeTable();
-    else return JSON.parse(JSON_string);
+    if (JSON_string == null || JSON_string == "" || JSON_string == "[]") {
+      let items: TimeTableItem[] = [];
+      for (let i = 0; i < SIZE; i++) {
+        items.push(new TimeTableItem());
+      }
+
+      return Promise.resolve(items);
+    }
+    else return Promise.resolve(JSON.parse(JSON_string));
+  }
+
+  clearItems(): Promise<TimeTableItem[]> {
+    let items: TimeTableItem[] = [];
+    for (let i = 0; i < SIZE; i++) {
+      items.push(new TimeTableItem());
+    }
+    return Promise.resolve(items);
   }
 }

@@ -1,11 +1,12 @@
 import { Directive, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
-
+import {Subject} from "../subject";
+import {Input} from "@angular/core";
 @Directive({
     selector: '[makeDroppable]'
 })
 export class MakeDroppable implements OnInit {
     @Output() dropped: EventEmitter<any> = new EventEmitter();
-
+    // @Input() subject: Subject;
     constructor(private _elementRef: ElementRef) {}
 
     ngOnInit() {

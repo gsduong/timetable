@@ -7,10 +7,12 @@ export class Subject {
   category: Category;
   id: number;
   name: string;
+  isDraggable: boolean;
   constructor(_id: number, _name: string, _category: Category){
     this.id = _id;
     this.name = _name;
     this.category = _category;
+    this.isDraggable = true;
   }
   public getId(): number {
     return this.id;
