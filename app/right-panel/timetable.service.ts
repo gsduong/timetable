@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "../subject";
-import {SIZE} from "./timetable.utils";
+import {SIZE, DAY_IN_WEEK, ROWS} from "./timetable.utils";
 import {TimeTableItem} from "../TimeTableItem";
 /**
  * Created by gsduong on 1/20/17.
@@ -13,20 +13,39 @@ export class TimeTableService {
   }
 
   getDataString(): string {
-    return localStorage.getItem(this.getUsername());
+    let dataString = localStorage.getItem(this.getUsername());
+    if (!dataString) {
+      console.log("data is empty");
+      return null;
+    }
+    else {
+      console.log("data is ready ");
+      return dataString;
+    }
   }
 
-  getItems(): Promise<TimeTableItem[]> {
-    let JSON_string = this.getDataString();
-    if (JSON_string == null || JSON_string == "" || JSON_string == "[]") {
-      let items: TimeTableItem[] = [];
-      for (let i = 0; i < SIZE; i++) {
-        items.push(new TimeTableItem());
+  initData(): TimeTableItem[] {
+    let items: TimeTableItem[] = [];
+    let item: TimeTableItem;
+    for (let day of DAY_IN_WEEK) {
+      for (let row of ROWS) {
+        item = new TimeTableItem();
+        item.setTimeTableId(day + row);
+        items.push(item);
       }
-
-      return Promise.resolve(items);
     }
-    else return Promise.resolve(JSON.parse(JSON_string));
+
+    return items;
+  }
+
+  getItems(): TimeTableItem[] {
+    let JSON_string = this.getDataString();
+    if (!JSON_string) {
+      return this.initData();
+    }
+    else {
+      return JSON.parse(JSON_string);
+    }
   }
 
   clearLocalStorage(): void {

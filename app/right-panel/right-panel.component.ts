@@ -7,7 +7,6 @@ import {TimeTableService} from "./timetable.service";
 import {ROWS, COLS, DAY_IN_WEEK, SIZE} from "./timetable.utils";
 import {TimeTableItem} from "../TimeTableItem";
 import {Subject} from "../subject";
-import {isNullOrUndefined} from "util";
 @Component({
   selector: 'right-panel',
   templateUrl: 'app/right-panel/right-panel.component.html',
@@ -25,7 +24,7 @@ export class RightPanelComponent implements OnInit {
   constructor(private timeTableService: TimeTableService){}
 
   getItems(): void {
-    this.timeTableService.getItems().then(items => this.timeTableItems = items);
+    this.timeTableItems = this.timeTableService.getItems();
   }
 
   getSubjectByTimeTableId(id: string): Subject {
@@ -34,12 +33,12 @@ export class RightPanelComponent implements OnInit {
     var item = this.timeTableItems.find(function (e: TimeTableItem){
       if (!e) return false;
       else {
-        return e.getTimeTableId() == id;
+        return e.timeTableId == id;
       }
     });
 
     if (!item) return null;
-    else return item.getSubject();
+    else return item.subject;
   }
   ngOnInit(){
     this.getItems();
@@ -52,35 +51,30 @@ export class RightPanelComponent implements OnInit {
     /* check if a cell with the same timetable id existed */
     let cell = this.timeTableItems.find(function (e: TimeTableItem) {
       if (!e) {
-        console.log("e is undefined");
+
         return false;
       }
       else {
-        return e.getTimeTableId() == data.getTimeTableId();
+        return e.timeTableId == data.getTimeTableId();
       }
     });
     if (!cell) {
       /* if not exist, push */
-      console.log("Not exist");
+
       this.timeTableItems.push(data);
-      console.log("Pushed: " + JSON.stringify(data));
     } else {
       /* if exists, delete and push */
-      console.log("Replacing ...");
+
       let index = this.timeTableItems.indexOf(cell);
-      this.timeTableItems.push(data);
-      console.log("Pushed: " + JSON.stringify(data));
-      delete this.timeTableItems[index];
-      console.log("Deleted: " + JSON.stringify(cell));
+      this.timeTableItems[index].subject = data.getSubject();
+
     }
 
   }
 
   clearTimeTable(): void {
-    let items : TimeTableItem[] = [];
-    for (let i = 0; i < ROWS.length * COLS.length; i++) items[i] = new TimeTableItem();
-    this.timeTableItems = items;
-    console.log("Cleared!");
+    this.timeTableItems = this.timeTableService.initData();
+
   }
 
   saveTimeTable(): void {
@@ -94,3 +88,4 @@ export class RightPanelComponent implements OnInit {
     this.timeTableService.clearLocalStorage();
   }
 }
+

@@ -3,8 +3,8 @@ import {Subject} from "./subject";
  * Created by gsduong on 1/23/17.
  */
 export class TimeTableItem {
-  private subject: Subject;
-  private timeTableId: string; /* id to identify position of subject in timetable */
+  public subject: Subject;
+  public timeTableId: string; /* id to identify position of subject in timetable */
   constructor () {
     this.subject = null;
     this.timeTableId = "";

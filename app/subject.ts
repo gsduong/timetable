@@ -6,7 +6,7 @@ import { CATEGORYLIST } from "./category";
 export class Subject {
   categoryId: number;
   id: number;
-  name: string;
+  public name: string;
   isDraggable: boolean;
   constructor(_id: number, _name: string, _categoryId: number){
     this.id = _id;
