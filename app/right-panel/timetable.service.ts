@@ -29,11 +29,8 @@ export class TimeTableService {
     else return Promise.resolve(JSON.parse(JSON_string));
   }
 
-  clearItems(): Promise<TimeTableItem[]> {
-    let items: TimeTableItem[] = [];
-    for (let i = 0; i < SIZE; i++) {
-      items.push(new TimeTableItem());
-    }
-    return Promise.resolve(items);
+  clearLocalStorage(): void {
+    /* clear table data of user */
+    localStorage.removeItem(this.getUsername());
   }
 }

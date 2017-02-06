@@ -1,21 +1,32 @@
 <table width="80%" align="center">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-      </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+    </tr>
+  </thead>
   <tbody>
     <tr *ngFor="let row of rows">
-      <td>{{row}}</td>
+      <td style="width: 10px;">{{row}}</td>
       <td *ngFor="let day of days" [id]="day + row" makeDroppable (dropped)="onDrop($event)">
-        <subject *ngIf="!isEmpty(day + row)" [subject]="getSubjectByTimeTableId(day + row)"></subject>
+        <subject [subject]="getSubjectByTimeTableId(day + row)"></subject>
       </td>
     </tr>
   </tbody>
-
 </table>
+<div class="row">
+  <!--<div class="col-md-4 col-xs-4">-->
+    <!--<button type="button" class="btn btn-default" (click)="saveTimeTable()">Save</button>-->
+  <!--</div>-->
+  <div class="col-md-4 col-xs-4">
+    <button type="button" class="btn btn-default" (click)="clearTimeTable()">Clear</button>
+  </div>
+  <!--<div class="col-md-4 col-xs-4">-->
+    <!--<button type="button" class="btn btn-default" (click)="clearLocalStorage()">Clear Local Storage</button>-->
+  <!--</div>-->
+</div>
+

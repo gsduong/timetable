@@ -23,7 +23,7 @@ export class ListService {
   }
   getSubjectsByCategoryId(category_id: number): Promise<Subject[]> {
     return this.getSubjects()
-      .then(subjects => subjects.filter(subject => subject.getCategory().getId() === category_id));
+      .then(subjects => subjects.filter(subject => subject.getCategoryId() === category_id));
   }
 
   getSubject(id: number): Promise<Subject> {

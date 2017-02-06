@@ -7,6 +7,7 @@ import {TimeTableService} from "./timetable.service";
 import {ROWS, COLS, DAY_IN_WEEK, SIZE} from "./timetable.utils";
 import {TimeTableItem} from "../TimeTableItem";
 import {Subject} from "../subject";
+import {isNullOrUndefined} from "util";
 @Component({
   selector: 'right-panel',
   templateUrl: 'app/right-panel/right-panel.component.html',
@@ -28,8 +29,15 @@ export class RightPanelComponent implements OnInit {
   }
 
   getSubjectByTimeTableId(id: string): Subject {
+
     if (!this.timeTableItems) return null;
-    let item = this.timeTableItems.find(item => item.getTimeTableId() === id);
+    var item = this.timeTableItems.find(function (e: TimeTableItem){
+      if (!e) return false;
+      else {
+        return e.getTimeTableId() == id;
+      }
+    });
+
     if (!item) return null;
     else return item.getSubject();
   }
@@ -41,22 +49,48 @@ export class RightPanelComponent implements OnInit {
     this.size = SIZE;
   }
   onDrop(data: TimeTableItem){
-    if (this.timeTableItems.indexOf(data) > -1 ) {
-      /* Check if timetable already has this item */
-    } else {
+    /* check if a cell with the same timetable id existed */
+    let cell = this.timeTableItems.find(function (e: TimeTableItem) {
+      if (!e) {
+        console.log("e is undefined");
+        return false;
+      }
+      else {
+        return e.getTimeTableId() == data.getTimeTableId();
+      }
+    });
+    if (!cell) {
+      /* if not exist, push */
+      console.log("Not exist");
       this.timeTableItems.push(data);
-      console.log("Pushed : " + JSON.stringify(data));
+      console.log("Pushed: " + JSON.stringify(data));
+    } else {
+      /* if exists, delete and push */
+      console.log("Replacing ...");
+      let index = this.timeTableItems.indexOf(cell);
+      this.timeTableItems.push(data);
+      console.log("Pushed: " + JSON.stringify(data));
+      delete this.timeTableItems[index];
+      console.log("Deleted: " + JSON.stringify(cell));
     }
+
   }
 
   clearTimeTable(): void {
-    this.timeTableService.clearItems().then(items => this.timeTableItems = items);
+    let items : TimeTableItem[] = [];
+    for (let i = 0; i < ROWS.length * COLS.length; i++) items[i] = new TimeTableItem();
+    this.timeTableItems = items;
+    console.log("Cleared!");
   }
 
   saveTimeTable(): void {
+    localStorage.removeItem(this.timeTableService.getUsername());
     localStorage.setItem(this.timeTableService.getUsername(), JSON.stringify(this.timeTableItems));
   }
   isEmpty(id: string) : boolean {
     return this.getSubjectByTimeTableId(id) == null;
+  }
+  clearLocalStorage(): void {
+    this.timeTableService.clearLocalStorage();
   }
 }

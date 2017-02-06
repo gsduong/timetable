@@ -2,13 +2,14 @@
  * Created by gsduong on 1/19/17.
  */
 import {Directive, Input, ElementRef, OnInit, Output, EventEmitter} from "@angular/core";
+import {Subject} from "../subject";
 @Directive({
   selector: '[makeDraggable]'
 })
 
 export class Draggable implements OnInit {
   isDraggable: boolean;
-  @Input('makeDraggable') data: any;
+  @Input() data: Subject;
 
   @Output() onDragEndCallback: EventEmitter<any> = new EventEmitter();
 
