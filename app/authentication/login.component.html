@@ -1,25 +1,41 @@
-<div>
-  <div>
-    Welcome
-  </div>
-  <div>
-    <div>
-      <div>
-        <label for="username">Username</label>
-        <input [(ngModel)]="user.username" id="username" class="validate" required>
 
-      </div>
-    </div>
-
-    <div>
-      <div>
-        <label for="password">Password</label>
-        <input [(ngModel)]="user.password" id="password"
-               type="password" class="validate" required>
-      </div>
-    </div>
-    <button (click)="login()"
-            type="submit" name="action">Login</button>
-    <div>{{msg}}</div>
-  </div>
+<div class="container col-md-2 col-md-offset-5">
+        <h1 class="form-signin-heading">Timetable!</h1>
+        <label for="username" class="sr-only">User name</label>
+        <input id="username" class="form-control validate" placeholder="User name" required="" autofocus="" type="text"
+               [(ngModel)]="user.username">
+        <label for="password" class="sr-only">Password</label>
+        <input id="password" class="form-control validate" placeholder="Password" required="" type="password"
+               [(ngModel)]="user.password">
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()"
+                name="action">Sign in
+        </button>
+        <br>
+        <span class="text-danger">{{msg}}</span>
 </div>
+<!--<div>-->
+<!--<div>-->
+<!--Welcome-->
+<!--</div>-->
+<!--<div>-->
+<!--<div>-->
+<!--<div>-->
+<!--<label for="username">Username</label>-->
+<!--<input [(ngModel)]="user.username" id="username" class="validate" required>-->
+
+<!--</div>-->
+<!--</div>-->
+
+<!--<div>-->
+<!--<div>-->
+<!--<label for="password">Password</label>-->
+<!--<input [(ngModel)]="user.password" id="password"-->
+<!--type="password" class="validate" required>-->
+<!--</div>-->
+<!--</div>-->
+<!--<button (click)="login()"-->
+<!--type="submit" name="action">Login</button>-->
+<!--<div>{{msg}}</div>-->
+<!--</div>-->
+<!--</div>-->
