@@ -1,6 +1,5 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 import { AppComponent }  from './app.component';
 import { LoginComponent } from './authentication/login.component';
@@ -14,8 +13,6 @@ import {Draggable} from "./shared/make-draggable.directive";
 import {Droppable} from "./shared/make-droppable.directive";
 import {TimeTableService} from "./right-panel/timetable.service";
 import {SubjectComponent} from "./subject/subject.component";
-//import { MakeDraggable } from "./left-panel/draggable.directive";
-//import { MakeDroppable } from "./right-panel/droppable.directive";
 
 @NgModule({
   imports:  [

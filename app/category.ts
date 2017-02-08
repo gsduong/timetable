@@ -1,4 +1,3 @@
-import {variable} from "@angular/compiler/src/output/output_ast";
 export class Category {
   name: string;
   id: number;
@@ -29,4 +28,4 @@ export const CATEGORYLIST = [
   new Category(10, "F"),
   new Category(11, "G"),
   new Category(12, "H"),
-]
+];
