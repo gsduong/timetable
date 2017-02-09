@@ -30,3 +30,12 @@ td:hover
   background: #666;
   color: white;
 }
+.drag-enter {
+  border: 1px;
+  border-style: dotted;
+}
+
+.child {
+  border: 1px;
+  border-style: dashed;
+}

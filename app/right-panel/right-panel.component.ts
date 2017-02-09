@@ -1,7 +1,7 @@
 /**
  * Created by gsduong on 1/4/17.
  */
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ElementRef} from "@angular/core";
 import { MakeDroppable } from "./droppable.directive";
 import {TimeTableService} from "./timetable.service";
 import {ROWS, COLS, DAY_IN_WEEK, SIZE} from "./timetable.utils";
@@ -67,9 +67,7 @@ export class RightPanelComponent implements OnInit {
 
       let index = this.timeTableItems.indexOf(cell);
       this.timeTableItems[index].subject = data.getSubject();
-
     }
-
   }
 
   clearTimeTable(): void {

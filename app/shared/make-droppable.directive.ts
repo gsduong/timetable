@@ -51,7 +51,7 @@ export class Droppable implements OnInit {
       }
 
       el.classList.remove('over');
-
+      el.classList.add('dropped');
       let subjectString = e.dataTransfer.getData('text');
       let data = JSON.parse(subjectString); /* subject to be dropped */
       let subject = new Subject(data.id, data.name, data.categoryId);
@@ -65,6 +65,7 @@ export class Droppable implements OnInit {
       item.setTimeTableId(targetId);
 
       this.dropped.emit(item);
+      el.classList.remove('drag-enter');
       return false;
     })
   }
