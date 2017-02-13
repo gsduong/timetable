@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <base href="/">
-    <title>Angular QuickStart</title>
+    <title>Timetable</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
@@ -16,13 +16,23 @@
 
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('app').catch(function(err){ console.error(err); });
+        System.import('app').catch(function (err) {
+            console.error(err);
+        });
     </script>
 
     <!--<script src="assets/js/dragndrop.js"></script>-->
-  </head>
+</head>
 
-  <body>
-    <my-app>Loading AppComponent content here ...</my-app>
-  </body>
+<body>
+<my-app>
+    <div class="container text-center">
+        <div class="jumbotron">
+            <h1>Timetable</h1>
+            <p>Awesome app to save your timetable!</p>
+        </div>
+        <h3>Loading <span class="glyphicon glyphicon-refresh"></span></h3>
+    </div>
+</my-app>
+</body>
 </html>
